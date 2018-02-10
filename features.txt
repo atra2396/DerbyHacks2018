@@ -10,3 +10,5 @@ Alexa Skill -> Web App
 	- Varying levels of priority
 	- Regular reports, logs
 
+Tech Stuff
+- CodeIgniter -> Web App; Flask-ASK -> Alexa
