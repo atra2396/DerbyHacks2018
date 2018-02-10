@@ -1,0 +1,12 @@
+Alexa Skill -> Web App
+- Basic Functions: Alarm, basic questions
+	- "How are you? Do you need help with <X>?"
+	- "Wake up at <X> time"
+- Med reminders: "Remind me to take <X> every <Y> at <Z> time."
+	- Fill out information on webpage
+	- Automatically remind if past due
+	- Keep track of medication amount
+- Nurse Access: Text/Call a nurse on command
+	- Varying levels of priority
+	- Regular reports, logs
+
