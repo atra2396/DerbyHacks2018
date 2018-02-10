@@ -36,7 +36,7 @@ def get_medical_alerts():
 	connection = connect_db()
 	try:	# Get all med alerts for the day
 		with connection.cursor() as cursor:
-			query = "SELECT meds.m_name, DATE_FORMAT(alerts.time, '%Y-%m-%d') " \
+			query = "SELECT meds.m_name, DATE_FORMAT(alerts.time, '\%Y-\%m-\%d') " \
 					"FROM meds INNER JOIN alerts ON meds.m_id=alerts " \
 					"WHERE alerts.time LIKE CONCAT(CURDATE(), '%') AND alerts.p_id=%s"
 			cursor.execute(query, (session.attributes['user_id']))
