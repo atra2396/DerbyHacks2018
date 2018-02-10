@@ -1,7 +1,5 @@
 <html>
         <head>
-                <title>CodeIgniter Tutorial</title>
+                <title><?php echo $title; ?></title>
         </head>
         <body>
-
-                <h1><?php echo $title; ?></h1>
