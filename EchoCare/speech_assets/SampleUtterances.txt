@@ -37,12 +37,12 @@ AlertNurseIntent Call someone
 AlertNurseIntent Get someone
 AlertNurseIntent Get me someone
 
-CallNurseIntent 4
-CallNurseIntent 5
+CallNurseIntent Four
+CallNurseIntent Five
 CallNurseIntent urgent
 CallNurseIntent urgently
 
-EmailNurseIntent 3
-EmailNurseIntent 2
-EmailNurseIntent 1
+EmailNurseIntent Three
+EmailNurseIntent Two
+EmailNurseIntent One
 EmailNurseIntent not urgently
