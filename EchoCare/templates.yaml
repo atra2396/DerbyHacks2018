@@ -14,7 +14,7 @@ email_nurse: Email sent to {{nurse[3]}}
 
 call_nurse: I have called the nurse {{nurse[1]}} for you.
 
-greet_with_questions: Greetings. I have {% if num_q == 1 %} a question {% else %} {{num_q}} questions {% endif %} for you. First, {{q}}
+start_questions: I have {% if q|length == 1 %} a question {% else %} {{q|length}} questions {% endif %} for you. First, {{q}}
 
 further_questions: Alright. Next, {{q}}
 
