@@ -8,6 +8,8 @@ alert_nurse_reprompt: If you urgently need to call a nurse, please say 5, otherw
 
 email_nurse: Email sent to {{nurse[3]}}
 
+call_nurse: I have called the nurse {{nurse[1]}} for you.
+
 list_meds: Today you have these medications to take, {% if meds|length != 0 %} {% for med in meds %} {{med[1]}}, {% endfor %} {% else %} You do not have any medications to take today {% endif %}
 
 bye: Goodbye
