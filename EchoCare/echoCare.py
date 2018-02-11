@@ -1,7 +1,8 @@
-from flask import Flask, render_template, session
-from flask_ask import Ask, statement, question
+from flask import Flask, render_template
+from flask_ask import Ask, statement, question, session
 from peewee import *
 import pymysql
+from datetime import date
 
 DATABASE = 'echo_care'
 USERNAME = 'EchoCare'
@@ -16,14 +17,20 @@ db_info = { 'database': DATABASE,
 app = Flask(__name__)	# Define app instance
 ask = Ask(app, "/")		# flask-ask instance
 
-# session.attributes['user'] = "Bob"
-# session.attributes['user_id'] = "0" 
 
 def connect_db():
 	return pymysql.connect(host=db_info['hostname'], user=db_info['username'],
 						   password=db_info['password'], db=db_info['database'])
 
-def should_take_med(frequency, start_):
+def should_take_med(frequency, start_date):
+	today = date.today()
+	freq = int(frequency.split(' ')[0])
+	delta = today - start_date
+	if delta.days % freq == 0:
+		return True
+	else:
+		return False
+	
 	
 
 @ask.launch
@@ -31,7 +38,7 @@ def launch():
 	greeting = render_template('greeting')
 	repeat = render_template('greeting_reprompt')
 #	return question(greeting).reprompt(repeat)
-	return statement(greeting)
+	return question(greeting)
 
 @ask.intent('OneshotTideIntent')
 def something():
@@ -40,23 +47,52 @@ def something():
 
 @ask.intent('ListMedicationsIntent')
 def list_medications():
-	medications = ()
+	all_medications = ()
 	connection = connect_db()
 	try:
 		with connection.cursor() as cursor:
-			query = 'SELECT * FROM meds'
+			query = 'SELECT * FROM alerts INNER JOIN meds ON meds.m_id=alerts.m_id'
 #			query = "SELECT meds.m_name " \
 #					"FROM meds, conditions " \
 #					"WHERE ...?"
 			cursor.execute(query)
-			medications = cursor.fetchall()
-			print medications
+			all_medications = cursor.fetchall()
+			print all_medications
 	finally:
 		connection.close()
 	
-	medication_response = render_template('list_meds', meds = medications)
+	relavent_meds = []
+	for item in all_medications:
+		if should_take_med(item[2], item[1]):
+			relavent_meds.append((item[7], item[9]))	# Name, amount
+
+	medication_response = render_template('list_meds', meds = relavent_meds)
 	return statement(medication_response)
-			
+
+@ask.intent('HowToTakeMedicationsIntent')
+def list_medications():
+	all_medications = ()
+	connection = connect_db()
+	try:
+		with connection.cursor() as cursor:
+			query = 'SELECT * FROM alerts INNER JOIN meds ON meds.m_id=alerts.m_id'
+#			query = "SELECT meds.m_name " \
+#					"FROM meds, conditions " \
+#					"WHERE ...?"
+			cursor.execute(query)
+			all_medications = cursor.fetchall()
+			print all_medications
+	finally:
+		connection.close()
+	
+	relavent_meds = []
+	for item in all_medications:
+		if should_take_med(item[2], item[1]):
+			relavent_meds.append((item[7], item[8]))	# Name, amount
+
+	medication_response = render_template('med_instructions', meds = relavent_meds)
+	return statement(medication_response)
+		
 
 @ask.intent('MedicationAlertIntent')
 def get_medical_alerts():
