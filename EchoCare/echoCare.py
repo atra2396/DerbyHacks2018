@@ -119,7 +119,7 @@ def medication_directions():
 			print all_medications
 	finally:
 		connection.close()
-	
+
 	relavent_meds = []
 	for item in all_medications:
 		if should_take_med(item[2], item[1]):
@@ -168,6 +168,7 @@ def call_nurse_intent():
 	print "You would get called if this worked"
 
 	return statement(render_template('call_nurse', nurse = nurse))
+
 
 @ask.intent('MedicationAlertIntent')
 def get_medical_alerts():
