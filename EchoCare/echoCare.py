@@ -1,6 +1,5 @@
 from flask import Flask, render_template, session
-from flask-ask import Ask, statement, question
-from EchoCare import app, ask, db, db_info
+from flask_ask import Ask, statement, question
 from peewee import *
 import pymysql
 
@@ -17,8 +16,8 @@ db_info = { 'database': DATABASE,
 app = Flask(__name__)	# Define app instance
 ask = Ask(app, "/")		# flask-ask instance
 
-session.attributes['user'] = "Bob"
-session.attributes['user_id'] = "0" 
+# session.attributes['user'] = "Bob"
+# session.attributes['user_id'] = "0" 
 
 def connect_db():
 	return pymysql.connect(host=db_info['hostname'], user=db_info['username'],
@@ -28,7 +27,12 @@ def connect_db():
 def launch():
 	greeting = render_template('greeting')
 	repeat = render_template('greeting_reprompt')
-	return question(greeting).reprompt(repeat)
+#	return question(greeting).reprompt(repeat)
+	return statement(greeting)
+
+@ask.intent('OneshotTideIntent')
+def something():
+	return statement('YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO')
 
 @ask.intent('MedicationAlertIntent')
 def get_medical_alerts():
@@ -43,3 +47,6 @@ def get_medical_alerts():
 			all_alerts = cursor.fetchall()
 	finally:
 		connection.close()
+
+if __name__ == '__main__':
+	app.run(debug=True)
