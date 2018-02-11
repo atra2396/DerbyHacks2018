@@ -1,0 +1,65 @@
+ListMedicationsIntent List my medications
+ListMedicationsIntent What are my medication
+ListMedicationsIntent Tell me my medications
+ListMedicationsIntent Please give me my medications
+ListMedicationsIntent Medications please
+ListMedicationsIntent Please medications
+ListMedicationsIntent I want to hear my mediactions
+ListMedicationsIntent I want to hear medications
+ListMedicationsIntent Give me medications
+ListMedicationsIntent Give me my medications
+ListMedicationsIntent What are my meds
+ListMedicationsIntent List my meds
+ListMedicationsIntent Tell me my meds
+ListMedicationsIntent Please tell me my meds
+ListMedicationsIntent Please list my medications
+ListMedicationsIntent Please tell me all my medications
+ListMedicationsIntent List all my meds
+ListMedicationsIntent List all my medications
+
+AlertNurseIntent I would like to talk to a nurse
+AlertNurseIntent Call a nurse
+AlertNurseIntent Call a doctor
+AlertNurseIntent I would like to talk to a doctor
+AlertNurseIntent Please call a nurse
+AlertNurseIntent Please call a doctor
+AlertNurseIntent Get me a nurse
+AlertNurseIntent Get me a doctor
+AlertNurseIntent I want to talk to a nurse
+AlertNurseIntent I want to talk to a doctor
+AlertNurseIntent I would like to talk to someone
+AlertNurseIntent I would like to speak to a doctor
+AlertNurseIntent I would like to speak to a nurse
+AlertNurseIntent I want to speak to a doctor
+AlertNurseIntent I want to speak to a nurse
+AlertNurseIntent Please call someone
+AlertNurseIntent Call someone
+AlertNurseIntent Get someone
+AlertNurseIntent Get me someone
+
+CallNurseIntent Four
+CallNurseIntent Five
+CallNurseIntent urgent
+CallNurseIntent urgently
+
+EmailNurseIntent Three
+EmailNurseIntent Two
+EmailNurseIntent One
+EmailNurseIntent not urgently
+
+HowToTakeMedicationsIntent Tell me how to take my medications
+HowToTakeMedicationsIntent How do I take my meds
+HowToTakeMedicationsIntent How to take medications
+HowToTakeMedicationsIntent How to take meds
+HowToTakeMedicationsIntent How do I take my pills
+HowToTakeMedicationsIntent How do I take my perscriptions
+HowToTakeMedicationsIntent Please tell me how to take my meds
+HowToTakeMedicationsIntent Please tell me how to take my medications
+HowToTakeMedicationsIntent Please tell me how to take my pills
+HowToTakeMedicationsIntent How do my pills work
+HowToTakeMedicationsIntent What do I do with my pills
+HowToTakeMedicationsIntent What to do with my meds
+HowToTakeMedicationsIntent What to do with my medication
+HowToTakeMedicationsIntent What do I do with my medication
+HowToTakeMedicationsIntent How can I take my medication
+HowToTakeMedicationsIntent How can I take my meds
