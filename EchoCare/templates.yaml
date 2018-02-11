@@ -1,8 +1,8 @@
-greeting: Hello, welcome to Echo Care - Your in house nurse assistant. How can I help you today?
+greeting: Hello, welcome to Echo Care - Your in-house nurse assistant. How can I help you today?
 
 greeting_reprompt: How can I help you today? I can list your medications, alert a nurse for you, or start a meditation session with you.
 
-alert_nurse: How urgently do you need to speak to your nurse, on a scale of 1 to 5 with 1 being not urgent, and 5 being very urgent?
+alert_nurse: How urgently do you need to speak to your nurse, {{nurse[1]}}, on a scale of 1 to 5 with 1 being not urgent, and 5 being very urgent?
 
 alert_nurse_reprompt: If you urgently need to call a nurse, please say 5, otherwise, on a scale of 1 to 5 with 1 being not urgent, and 5 being very urgent, how urgently do you need to call your nurse?
 
@@ -14,6 +14,10 @@ email_nurse: Email sent to {{nurse[3]}}
 
 call_nurse: I have called the nurse {{nurse[1]}} for you.
 
-list_meds: Today you have these medications to take, {% if meds|length != 0 %} {% for med in meds %} {{med[1]}}, {% endfor %} {% else %} You do not have any medications to take today {% endif %}
+greet_with_questions: Greetings. I have {% if num_q == 1 %} a question {% else %} {{num_q}} questions {% endif %} for you. First, {{q}}
+
+further_questions: Alright. Next, {{q}}
+
+done_questions: That's all the questions I have for you. How else can I help you
 
 bye: Goodbye
