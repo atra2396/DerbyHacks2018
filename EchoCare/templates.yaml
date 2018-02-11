@@ -14,6 +14,10 @@ email_nurse: Email sent to {{nurse[3]}}
 
 call_nurse: I have called the nurse {{nurse[1]}} for you.
 
-list_meds: Today you have these medications to take, {% if meds|length != 0 %} {% for med in meds %} {{med[1]}}, {% endfor %} {% else %} You do not have any medications to take today {% endif %}
+greet_with_questions: Greetings. I have {% if num_q == 1 %} a question {% else %} {{num_q}} questions {% endif %} for you. First, {{q}}
+
+further_questions: Alright. Next, {{q}}
+
+done_questions: That's all the questions I have for you. How else can I help you
 
 bye: Goodbye

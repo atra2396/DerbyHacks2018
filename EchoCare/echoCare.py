@@ -4,7 +4,7 @@ from peewee import *
 import smtplib
 from email.mime.text import MIMEText
 import yagmail
-yagmail.register('derbyhacksechocare@gmail.com', 'derbyhacks318')
+# yagmail.register('derbyhacksechocare@gmail.com', 'derbyhacks318')
 import pymysql
 from datetime import date
 
@@ -21,7 +21,6 @@ db_info = { 'database': DATABASE,
 app = Flask(__name__)	# Define app instance
 ask = Ask(app, "/")		# flask-ask instance
 
-
 def connect_db():
 	return pymysql.connect(host=db_info['hostname'], user=db_info['username'],
 						   password=db_info['password'], db=db_info['database'])
@@ -34,20 +33,52 @@ def should_take_med(frequency, start_date):
 		return True
 	else:
 		return False
-	
-#def should_take_med(frequency, start_):
 
+questions = []	# Holds the relevent questions; we'll pop one off each time the questions loop happens.
+questions_length = 0 # The total number of questions for the day.
+def get_questions():
+	all_question = ()
+	connection = connect_db()
+	try:
+		with connection.cursor() as cursor:
+			query = 'SELECT * FROM alerts INNER JOIN questions ON questions.q_id=alerts.q_id'
+			cursor.execute(query)
+			all_questions = cursor.fetchall()
+			print all_questions
+	finally:
+		connection.close()
+	
+	for q in all_questions:
+		if should_take_med(q[2], q[1]):		# In this case, should ask question.
+			questions.append(q[-1])	# Just add the text.
+	questions_length = len(questions)
+	print questions
+
+
+all_responses = ''
 @ask.launch
 def launch():
+	get_questions()
+	if questions_length > 0:
+		all_responses += questions[-1]
+		q_template = render_template('greet_with_questions', num_q=questions_length, q=questions.pop())
+		return question(q_template)
+		# render greet_with_questions
 	greeting = render_template('greeting')
 	repeat = render_template('greeting_reprompt')
 #	return question(greeting).reprompt(repeat)
 	return question(greeting)
 
-@ask.intent('OneshotTideIntent')
-def something():
-	print "Something"
-	return statement('YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO')
+@ask.intent('AnswerQuestionsIntent')
+def ask_questions(response):
+	all_responses += '\n' + response
+	if len(questions) == 0:
+		print all_responses
+		return question(render_template('done_questions'))
+	else:
+		all_responses += questions[-1]
+		return question(render_template('further_questions', q=questions.pop()))
+	
 
 @ask.intent('ListMedicationsIntent')
 def list_medications():
@@ -74,7 +105,7 @@ def list_medications():
 	return statement(medication_response)
 
 @ask.intent('HowToTakeMedicationsIntent')
-def list_medications():
+def medication_directions():
 	all_medications = ()
 	connection = connect_db()
 	try:
