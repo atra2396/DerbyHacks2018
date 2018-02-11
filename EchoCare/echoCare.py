@@ -3,10 +3,10 @@ from flask_ask import Ask, statement, question
 from peewee import *
 import pymysql
 
-DATABASE = 'sample.db'
-USERNAME = 'admin'
-PASSWORD = 'admin'
-HOSTNAME = 'localhost'
+DATABASE = 'echo_care'
+USERNAME = 'EchoCare'
+PASSWORD = 'derbyhacks318'
+HOSTNAME = 'derbyhacks3.c9fsslvm81yn.us-east-2.rds.amazonaws.com'
 
 db_info = { 'database': DATABASE,
 			'username': USERNAME,
@@ -23,6 +23,9 @@ def connect_db():
 	return pymysql.connect(host=db_info['hostname'], user=db_info['username'],
 						   password=db_info['password'], db=db_info['database'])
 
+def should_take_med(frequency, start_):
+	
+
 @ask.launch
 def launch():
 	greeting = render_template('greeting')
@@ -37,17 +40,19 @@ def something():
 
 @ask.intent('ListMedicationsIntent')
 def list_medications():
-	medications = {'name': 'Advil'}
-#	connection = connect_db()
-#	try:
-#		with connection.cursor() as cursor:
+	medications = ()
+	connection = connect_db()
+	try:
+		with connection.cursor() as cursor:
+			query = 'SELECT * FROM meds'
 #			query = "SELECT meds.m_name " \
 #					"FROM meds, conditions " \
 #					"WHERE ...?"
-#			cursor.execute(query, ("Session stuff"))
-#			medications = cursor.fetchall()
-#	finally:
-#		connection.close()
+			cursor.execute(query)
+			medications = cursor.fetchall()
+			print medications
+	finally:
+		connection.close()
 	
 	medication_response = render_template('list_meds', meds = medications)
 	return statement(medication_response)
