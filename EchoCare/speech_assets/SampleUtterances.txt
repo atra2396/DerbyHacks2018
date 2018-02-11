@@ -46,3 +46,20 @@ EmailNurseIntent Three
 EmailNurseIntent Two
 EmailNurseIntent One
 EmailNurseIntent not urgently
+
+HowToTakeMedicationsIntent Tell me how to take my medications
+HowToTakeMedicationsIntent How do I take my meds
+HowToTakeMedicationsIntent How to take medications
+HowToTakeMedicationsIntent How to take meds
+HowToTakeMedicationsIntent How do I take my pills
+HowToTakeMedicationsIntent How do I take my perscriptions
+HowToTakeMedicationsIntent Please tell me how to take my meds
+HowToTakeMedicationsIntent Please tell me how to take my medications
+HowToTakeMedicationsIntent Please tell me how to take my pills
+HowToTakeMedicationsIntent How do my pills work
+HowToTakeMedicationsIntent What do I do with my pills
+HowToTakeMedicationsIntent What to do with my meds
+HowToTakeMedicationsIntent What to do with my medication
+HowToTakeMedicationsIntent What do I do with my medication
+HowToTakeMedicationsIntent How can I take my medication
+HowToTakeMedicationsIntent How can I take my meds
