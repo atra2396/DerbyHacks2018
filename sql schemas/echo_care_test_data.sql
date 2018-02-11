@@ -18,7 +18,6 @@ INSERT INTO patients VALUES (	null,
 				"Ryan Shah",
 				"15024980361",
 				"ryan.shah@uky.edu",
-				"pants",
 				"Lexington, Kentucky",
 				1);
 
@@ -28,8 +27,8 @@ INSERT INTO conditions VALUES ( null,
                                 1);
 
 INSERT INTO alerts VALUES (	null,
-				'2018-02-11',
-				"1 Day",
+				'2018-01-2',
+				"4 Day",
 				1,
 				null,
 				1);
