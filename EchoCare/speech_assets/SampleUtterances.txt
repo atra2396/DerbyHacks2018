@@ -17,4 +17,32 @@ ListMedicationsIntent Please tell me all my medications
 ListMedicationsIntent List all my meds
 ListMedicationsIntent List all my medications
 
+AlertNurseIntent I would like to talk to a nurse
+AlertNurseIntent Call a nurse
+AlertNurseIntent Call a doctor
+AlertNurseIntent I would like to talk to a doctor
+AlertNurseIntent Please call a nurse
+AlertNurseIntent Please call a doctor
+AlertNurseIntent Get me a nurse
+AlertNurseIntent Get me a doctor
+AlertNurseIntent I want to talk to a nurse
+AlertNurseIntent I want to talk to a doctor
+AlertNurseIntent I would like to talk to someone
+AlertNurseIntent I would like to speak to a doctor
+AlertNurseIntent I would like to speak to a nurse
+AlertNurseIntent I want to speak to a doctor
+AlertNurseIntent I want to speak to a nurse
+AlertNurseIntent Please call someone
+AlertNurseIntent Call someone
+AlertNurseIntent Get someone
+AlertNurseIntent Get me someone
 
+CallNurseIntent Four
+CallNurseIntent Five
+CallNurseIntent urgent
+CallNurseIntent urgently
+
+EmailNurseIntent Three
+EmailNurseIntent Two
+EmailNurseIntent One
+EmailNurseIntent not urgently

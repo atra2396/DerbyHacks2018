@@ -2,11 +2,18 @@ greeting: Hello, welcome to Echo Care - Your in house nurse assistant. How can I
 
 greeting_reprompt: How can I help you today? I can list your medications, alert a nurse for you, or start a meditation session with you.
 
+alert_nurse: How urgently do you need to speak to your nurse, on a scale of 1 to 5 with 1 being not urgent, and 5 being very urgent?
 
+alert_nurse_reprompt: If you urgently need to call a nurse, please say 5, otherwise, on a scale of 1 to 5 with 1 being not urgent, and 5 being very urgent, how urgently do you need to call your nurse?
 
 list_meds: Today you have these medications to take, {% if meds|length != 0 %} {% for med in meds %} {{med[1]}} of {{med[0]}}, {% endfor %} {% else %} You do not have any medications to take today {% endif %}
 
 med_instructions: This is how you take today's medications, {% if meds|length != 0 %} {% for med in meds %} For {{med[0]}}, {{med[1]}}. {% endfor %} {% else %} You have no medications to take today. {% endif%}
 
+email_nurse: Email sent to {{nurse[3]}}
+
+call_nurse: I have called the nurse {{nurse[1]}} for you.
+
+list_meds: Today you have these medications to take, {% if meds|length != 0 %} {% for med in meds %} {{med[1]}}, {% endfor %} {% else %} You do not have any medications to take today {% endif %}
 
 bye: Goodbye
