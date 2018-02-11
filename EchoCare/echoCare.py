@@ -3,8 +3,8 @@ from flask_ask import Ask, statement, question, session
 from peewee import *
 import smtplib
 from email.mime.text import MIMEText
-import yagmail
-yagmail.register('derbyhacksechocare@gmail.com', 'derbyhacks318')
+#import yagmail
+#yagmail.register('derbyhacksechocare@gmail.com', 'derbyhacks318')
 import pymysql
 from datetime import date
 
