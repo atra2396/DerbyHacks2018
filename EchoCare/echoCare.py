@@ -1,6 +1,8 @@
 from flask import Flask, render_template, session
 from flask_ask import Ask, statement, question
 from peewee import *
+import smtplib
+from email.mime.text import MIMEText
 import pymysql
 
 DATABASE = 'echo_care'
@@ -23,7 +25,7 @@ def connect_db():
 	return pymysql.connect(host=db_info['hostname'], user=db_info['username'],
 						   password=db_info['password'], db=db_info['database'])
 
-def should_take_med(frequency, start_):
+#def should_take_med(frequency, start_):
 	
 
 @ask.launch
@@ -56,7 +58,57 @@ def list_medications():
 	
 	medication_response = render_template('list_meds', meds = medications)
 	return statement(medication_response)
-			
+
+
+@ask.intent('AlertNurseIntent')
+def alert_nurse_intent():
+	nurse = ('1', 'Tracy Morgan', '5022943973', 'jacobcpawlak@gmail.com', '10:00 AM', '7:00PM', 'Lexington, KY')
+	connection = connect_db()
+	try:
+		with connection.cursor() as cursor:
+			query = 'SELECT * FROM nurses ORDER BY RAND() LIMIT 1'
+			#query = 'SELECT * FROM nurses WHERE nurses.n_id = patient.n_id'
+			cursor.execute(query)
+			#nurse = cursor.fetchall()
+			print(nurse)
+			#query2 = 'SELECT * FROM patients WHERE patient.p_id == session.attributes[\'user_id\']';
+	finally:
+		connection.close()
+
+	alert_nurse_response = render_template('alert_nurse', nurse = nurse)
+	alert_nurse_response_reprompt = render_template('alert_nurse_reprompt', nurse = nurse)
+	return question(alert_nurse_response).reprompt(alert_nurse_response_reprompt)
+
+
+@ask.intent('EmailNurseIntent')
+def email_nurse_intent():
+	#fp = open('textfile', 'wb')
+	#fp.write("Hello from Echo Care")
+	#msg = MIMEText(fp.read())
+	#fp.close()
+
+	#msg = {}
+	#msg['Subject'] = 'this worked?'
+	#msg['From'] = 'jacobcpawlak@gmail.com'
+	#msg['To'] = 'jacob.pawlak@uky.edu'
+
+	#s = smtplib.SMTP('localhost')
+	#s.sendmail('jacobcpawlak@gmail.com', ['jacob.pawlak@uky.edu'], msg.as_string())
+	#s.quit()
+
+	
+
+	print "You would get emailed if this worked"
+
+	return statement(render_template('email_nurse', nurse = nurse)
+
+
+@ask.intent('CallNurseIntent')
+def call_nurse_intent():
+
+	print "You would get called if this worked"
+
+	return statement(render_template('call_nurse', nurse = nurse)
 
 @ask.intent('MedicationAlertIntent')
 def get_medical_alerts():
