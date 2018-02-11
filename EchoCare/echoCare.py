@@ -26,6 +26,8 @@ def connect_db():
 						   password=db_info['password'], db=db_info['database'])
 
 def should_take_med(frequency, start_date):
+	if frequency == 'Daily':
+		return True
 	today = date.today()
 	freq = int(frequency.split(' ')[0])
 	delta = today - start_date
