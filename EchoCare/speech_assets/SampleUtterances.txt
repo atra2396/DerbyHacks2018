@@ -36,3 +36,13 @@ AlertNurseIntent Please call someone
 AlertNurseIntent Call someone
 AlertNurseIntent Get someone
 AlertNurseIntent Get me someone
+
+CallNurseIntent 4
+CallNurseIntent 5
+CallNurseIntent urgent
+CallNurseIntent urgently
+
+EmailNurseIntent 3
+EmailNurseIntent 2
+EmailNurseIntent 1
+EmailNurseIntent not urgently
