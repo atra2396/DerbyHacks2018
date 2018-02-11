@@ -1,13 +1,7 @@
 <div class="container-fluid">
 <div class="jumbotron">
     <h2>User Login</h2>
-    <?php
-    if(!empty($success_msg)){
-        echo '<p class="statusMsg">'.$success_msg.'</p>';
-    }elseif(!empty($error_msg)){
-        echo '<p class="statusMsg">'.$error_msg.'</p>';
-    }
-    ?>
+
     <form action="" method="post">
         <div class="form-group has-feedback">
             <input type="email" class="form-control" name="email" placeholder="Email" required="" value="">

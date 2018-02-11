@@ -9,6 +9,10 @@ class Users extends CI_Controller {
 	}
 
 	public function account() {
+		if(!array_key_exists("isUserLoggedIn", $this->session->userdata) || !$this->session->userdata["isUserLoggedIn"]) {
+                        $this->session->set_userdata("error_msg", "You must be logged in to access that page");
+                        redirect("/users/login");
+                }
 		$data = array();
 		$data["title"] = "Account";
 		$this->load->view("templates/header", $data);
@@ -25,14 +29,7 @@ class Users extends CI_Controller {
 	public function login() {
 		$data = array();
 		$data["title"] = "Login";
-		if($this->session->userdata("success_msg")) {
-			$data["success_msg"] = $this->session->userdata("success_msg");
-			$this->session->unset_userdata("success_msg");
-		}
-		if($this->session->userdata("error_msg")) {
-			$data["error_msg"] = $this->session->userdata("error_msg");
-			$this->session->unset_userdata("error_msg");
-		}
+
 		if($this->input->post("loginSubmit")) {
 			$this->form_validation->set_rules("email", "Email", "required|valid_email");
 			$this->form_validation->set_rules("password", "password", "required");
@@ -67,6 +64,7 @@ class Users extends CI_Controller {
 			$this->form_validation->set_rules("password","password","required");
 			$this->form_validation->set_rules("conf_password","confirm password","required|matches[password]");
 			$this->form_validation->set_rules("location","location","required");
+			$this->form_validation->set_rules("phone","phone","required");
 
 			$userData=array(
 				"n_name"=>strip_tags($this->input->post("name")),
@@ -96,7 +94,7 @@ class Users extends CI_Controller {
 		$this->session->unset_userdata("isUserLoggedIn");
 		$this->session->unset_userdata("userId");
 		$this->session->sess_destroy();
-		redirect("users/login/");
+		redirect("/");
 	}
 
 	public function email_check($str) {

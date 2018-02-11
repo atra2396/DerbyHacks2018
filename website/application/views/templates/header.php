@@ -25,17 +25,55 @@
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="#">Alert</a>
 					<a class="dropdown-item" href="#">Condition</a>
-					<a class="dropdown-item" href="#">Medicine</a>
-					<a class="dropdown-item" href="#">Paitent</a>
-					<a class="dropdown-item" href="#">Question</a>
+					<a class="dropdown-item" href="/add/medicine">Medicine</a>
+					<a class="dropdown-item" href="/add/patient">Patient</a>
+					<a class="dropdown-item" href="/add/question">Question</a>
 				</div>
 			</li>
 		</ul>
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-				<a class="nav-link" href="/users/login">Login</a>
+				<a class="nav-link" href='/users/
+				<?php
+				$this->load->model("user");
+				if($this->session->userdata["isUserLoggedIn"]) {
+					echo "logout'>Logout</a>";
+				} else {
+					echo "login'>Login</a>";
+				}
+				?>
 			</li>
 		</ul>
 	</div>
 </nav>
 </br>
+
+<?php
+
+if($this->session->userdata("success_msg")) {
+	$success = $this->session->userdata("success_msg");
+        $this->session->unset_userdata("success_msg");
+?>
+
+<div class="alert alert-dismissible alert-success">
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	<strong>Yay!</strong> <?php echo $success ?> 
+</div>
+
+<?php
+
+}
+if($this->session->userdata("error_msg")) {
+        $error = $this->session->userdata("error_msg");
+        $this->session->unset_userdata("error_msg");
+?>
+
+<div class="alert alert-dismissible alert-danger">
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	<strong>Oh, no!</strong> <?php echo $error ?>
+</div>
+
+<?php
+}
+
+?>

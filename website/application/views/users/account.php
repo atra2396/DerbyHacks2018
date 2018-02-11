@@ -6,7 +6,7 @@
         <p><b>Name: </b><?php echo $user['n_name']; ?></p>
         <p><b>Email: </b><?php echo $user['n_email']; ?></p>
         <p><b>Phone: </b><?php echo $user['n_phone']; ?></p>
-        <p><b>Gender: </b><?php echo $user['n_location']; ?></p>
+        <p><b>Location: </b><?php echo $user['n_location']; ?></p>
     </div>
 </div>
 </div>
