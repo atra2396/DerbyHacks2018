@@ -3,8 +3,6 @@ INSERT INTO nurses VALUES (	null,
 				"15023772071",
 				"insertclevertitle92@gmail.com",
 				"Cosmo",
-				"08:00",
-				"16:00",
 				"Shepherdsville, Kentucky");
 
 INSERT INTO meds VALUES (	null,

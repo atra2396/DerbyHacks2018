@@ -4,3 +4,4 @@ drop table patients;
 drop table questions;
 drop table meds;
 drop table nurses;
+show tables;

@@ -2,9 +2,7 @@ CREATE TABLE nurses (		n_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				n_name varchar(30) NOT NULL, 
 				n_phone varchar(20) NOT NULL, 
 				n_email varchar(50) NOT NULL,
-				n_password varchar(20) NOT NULL, 
-				n_start_time varchar(20) NOT NULL, 
-				n_end_time varchar(20) NOT NULL, 
+				n_password varchar(20) NOT NULL,  
 				n_location varchar(50) NOT NULL);
 
 CREATE TABLE meds (		m_id int NOT NULL AUTO_INCREMENT PRIMARY KEY, 
@@ -30,7 +28,7 @@ CREATE TABLE conditions (	c_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				c_conditions varchar(20) NOT NULL,
 				p_id int NOT NULL,
 				m_id int NOT NULL,
-				FOREIGN KEY (p_id) REFERENCES patients(p_id) 
+				FOREIGN KEY (p_id) REFERENCES patients(p_id), 
 				FOREIGN KEY (m_id) REFERENCES meds(m_id));
 
 CREATE TABLE alerts (		a_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
