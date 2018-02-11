@@ -2,7 +2,7 @@
 
 class User extends CI_Model {
 	function __construct() {
-		$this->userTbl = "users";
+		$this->userTbl = "nurses";
 	}
 
 	function getRows($params = array()) {
@@ -14,8 +14,8 @@ class User extends CI_Model {
 				$this->db->where($key,$value);
 			}
 		}
-		if(array_key_exists("id",$params)) {
-			$this->db->where("id",$params["id"]);
+		if(array_key_exists("n_id",$params)) {
+			$this->db->where("n_id",$params["n_id"]);
 			$query = $this->db->get();
 			$result = $query->row_array();
 		} else {
@@ -25,6 +25,7 @@ class User extends CI_Model {
 				$this->db->limit($params["limit"]);
 			}
 			$query = $this->db->get();
+
 			if(array_key_exists("reutrnType",$params) && $params["returnType"] == "count") {
 				$result = $query->num_rows();
 			} elseif(array_key_exists("returnType",$params) && $params["returnType"] == "single") {
@@ -37,13 +38,6 @@ class User extends CI_Model {
 	}
 
 	public function insert($data = array()) {
-		if(!array_key_exists("created", $data)) {
-			$data["created"] = date("Y-m-d H:i:s");
-		}
-		if(!array_key_exists("modified", $data)) {
-			$data["modified"] = date("Y-m-d H:i:s");
-		}
-
 		$insert = $this->db->insert($this->userTbl, $data);
 
 		if($insert) {

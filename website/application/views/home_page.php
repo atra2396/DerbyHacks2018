@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<p class="lead">Please login to access your data.</p>
 	<hr class="my-4">
 	<p class="lead">
-		<a class="btn btn-primary btn-lg" href="#" role="button">Login</a>
+		<a class="btn btn-primary btn-lg" href="/users/login" role="button">Login</a>
 	</p>
 </div>
 </div>
