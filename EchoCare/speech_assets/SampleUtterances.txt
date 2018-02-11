@@ -1,0 +1,20 @@
+ListMedicationsIntent List my medications
+ListMedicationsIntent What are my medication
+ListMedicationsIntent Tell me my medications
+ListMedicationsIntent Please give me my medications
+ListMedicationsIntent Medications please
+ListMedicationsIntent Please medications
+ListMedicationsIntent I want to hear my mediactions
+ListMedicationsIntent I want to hear medications
+ListMedicationsIntent Give me medications
+ListMedicationsIntent Give me my medications
+ListMedicationsIntent What are my meds
+ListMedicationsIntent List my meds
+ListMedicationsIntent Tell me my meds
+ListMedicationsIntent Please tell me my meds
+ListMedicationsIntent Please list my medications
+ListMedicationsIntent Please tell me all my medications
+ListMedicationsIntent List all my meds
+ListMedicationsIntent List all my medications
+
+
