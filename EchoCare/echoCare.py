@@ -32,7 +32,26 @@ def launch():
 
 @ask.intent('OneshotTideIntent')
 def something():
+	print "Something"
 	return statement('YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO')
+
+@ask.intent('ListMedicationsIntent')
+def list_medications():
+	medications = {}
+	connection = connect_db()
+	try:
+		with connection.cursor() as cursor:
+			query = "SELECT meds.m_name " \
+					"FROM meds, conditions " \
+					"WHERE ...?"
+			cursor.execute(query, ("Session stuff"))
+			medications = cursor.fetchall()
+	finally:
+		connection.close()
+	
+	medication_response = render_template('list_meds', meds = medications)
+	return statement(medication_response)
+			
 
 @ask.intent('MedicationAlertIntent')
 def get_medical_alerts():
