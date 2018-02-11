@@ -75,10 +75,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
+	'hostname' => 'derbyhacks3.c9fsslvm81yn.us-east-2.rds.amazonaws.com',
+	'username' => 'EchoCare',
+	'password' => 'derbyhacks318',
+	'database' => 'echo_care',
+	'port'     => '3306',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
