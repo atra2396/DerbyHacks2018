@@ -19,23 +19,16 @@ CREATE TABLE patients (         p_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
                                 p_phone varchar(20) NOT NULL,
                                 p_email varchar(50) NOT NULL,
                                 p_location varchar(50) NOT NULL,
-                                n_id int NOT NULL,                             
-                                FOREIGN KEY (n_id) REFERENCES nurses(n_id));
-
+                                n_id int NOT NULL);
 
 CREATE TABLE conditions (	c_id int NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-				c_conditions varchar(20) NOT NULL,
+				c_name varchar(20) NOT NULL,
 				p_id int NOT NULL,
-				m_id int NOT NULL,
-				FOREIGN KEY (p_id) REFERENCES patients(p_id), 
-				FOREIGN KEY (m_id) REFERENCES meds(m_id));
+				m_id int NOT NULL);
 
 CREATE TABLE alerts (		a_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				a_start_date date NOT NULL,
 				a_frequency varchar(20) NOT NULL, 
 				p_id int NOT NULL, 
 				m_id int, 
-				q_id int, 
-				FOREIGN KEY (m_id) REFERENCES meds(m_id), 
-				FOREIGN KEY (q_id) REFERENCES questions(q_id), 
-				FOREIGN KEY (p_id) REFERENCES patients(p_id));
+				q_id int);
