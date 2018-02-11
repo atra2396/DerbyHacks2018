@@ -3,8 +3,7 @@ from flask_ask import Ask, statement, question, session
 from peewee import *
 import smtplib
 from email.mime.text import MIMEText
-#import yagmail
-#yagmail.register('derbyhacksechocare@gmail.com', 'derbyhacks318')
+import yagmail
 import pymysql
 from datetime import date
 
@@ -104,34 +103,21 @@ def alert_nurse_intent():
 	try:
 		with connection.cursor() as cursor:
 			query = 'SELECT * FROM nurses ORDER BY RAND() LIMIT 1'
-			#query = 'SELECT * FROM nurses WHERE nurses.n_id = patient.n_id'
 			cursor.execute(query)
-			#nurse = cursor.fetchall()
+			nurse = cursor.fetchall()
 			print(nurse)
-			#query2 = 'SELECT * FROM patients WHERE patient.p_id == session.attributes[\'user_id\']';
 	finally:
 		connection.close()
 
-	alert_nurse_response = render_template('alert_nurse', nurse = nurse)
-	alert_nurse_response_reprompt = render_template('alert_nurse_reprompt', nurse = nurse)
+	alert_nurse_response = render_template('alert_nurse', nurse = nurse[0])
+	alert_nurse_response_reprompt = render_template('alert_nurse_reprompt', nurse = nurse[0])
 	return question(alert_nurse_response).reprompt(alert_nurse_response_reprompt)
 
 
 @ask.intent('EmailNurseIntent')
 def email_nurse_intent():
-	#fp = open('textfile', 'wb')
-	#fp.write("Hello from Echo Care")
-	#msg = MIMEText(fp.read())
-	#fp.close()
 
-	#msg = {}
-	#msg['Subject'] = 'this worked?'
-	#msg['From'] = 'jacobcpawlak@gmail.com'
-	#msg['To'] = 'jacob.pawlak@uky.edu'
-
-	#s = smtplib.SMTP('localhost')
-	#s.sendmail('jacobcpawlak@gmail.com', ['jacob.pawlak@uky.edu'], msg.as_string())
-	#s.quit()
+	yagmail.SMTP('derbyhacksechocare@gmail.com').send('jacobcpawlak@gmail.com', 'Your patient is requesting to see you', 'Please go check up on Jacob Pawlak, they are calling for your assistance from Echo Care')
 
 	nurse = ('1', 'Tracy Morgan', '5022943973', 'jacobcpawlak@gmail.com', '10:00 AM', '7:00PM', 'Lexington, KY')
 
@@ -144,6 +130,8 @@ def email_nurse_intent():
 def call_nurse_intent():
 
 	nurse = ('1', 'Tracy Morgan', '5022943973', 'jacobcpawlak@gmail.com', '10:00 AM', '7:00PM', 'Lexington, KY')
+
+	yagmail.SMTP('derbyhacksechocare@gmail.com').send('jacobcpawlak@gmail.com', 'THIS SHOULD BE A PHONE CALL', 'This would normally be a phone call because the patient has sent out a high-urgency alert to you')
 
 	print "You would get called if this worked"
 
