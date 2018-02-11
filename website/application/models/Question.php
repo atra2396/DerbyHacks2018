@@ -5,7 +5,6 @@ class Question extends CI_Model {
 		$this->userTbl = "questions";
 	}
 
-	/*
 	function getRows($params = array()) {
 		$this->db->select('*');
 		$this->db->from($this->userTbl);
@@ -15,8 +14,8 @@ class Question extends CI_Model {
 				$this->db->where($key,$value);
 			}
 		}
-		if(array_key_exists("n_id",$params)) {
-			$this->db->where("n_id",$params["n_id"]);
+		if(array_key_exists("q_id",$params)) {
+			$this->db->where("q_id",$params["q_id"]);
 			$query = $this->db->get();
 			$result = $query->row_array();
 		} else {
@@ -37,7 +36,6 @@ class Question extends CI_Model {
 		}
 		return $result;
 	}
-	*/
 
 	public function insert($data = array()) {
 		$insert = $this->db->insert($this->userTbl, $data);
