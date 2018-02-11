@@ -35,8 +35,10 @@ def should_take_med(frequency, start_date):
 		return False
 
 questions = []	# Holds the relevent questions; we'll pop one off each time the questions loop happens.
-questions_length = 0 # The total number of questions for the day.
+
 def get_questions():
+	global questions
+	questions = []
 	all_question = ()
 	connection = connect_db()
 	try:
@@ -55,30 +57,37 @@ def get_questions():
 	print questions
 
 
-all_responses = ''
 @ask.launch
 def launch():
-	get_questions()
-	if questions_length > 0:
-		all_responses += questions[-1]
-		q_template = render_template('greet_with_questions', num_q=questions_length, q=questions.pop())
-		return question(q_template)
-		# render greet_with_questions
 	greeting = render_template('greeting')
 	repeat = render_template('greeting_reprompt')
 #	return question(greeting).reprompt(repeat)
 	return question(greeting)
 
-@ask.intent('AnswerQuestionsIntent')
-def ask_questions(response):
-	all_responses += '\n' + response
+all_responses = ''
+@ask.intent('GetQuestionsIntent')
+def get_all_questions():
+	get_questions()
 	if len(questions) == 0:
-		print all_responses
-		return question(render_template('done_questions'))
-	else:
-		all_responses += questions[-1]
-		return question(render_template('further_questions', q=questions.pop()))
+		return statement('You have no new questions.')
+	print questions
+	return question("You have some questions. First question: " + questions[0] + " Please begin your answers with, 'My answer is'...")
+
+@ask.intent('AnswerQuestionsIntent')
+def answer_questions(response):
+	global questions
+	global all_responses
 	
+	all_responses += questions.pop(0)
+	all_responses += '\n' + response + '\n\n'
+
+	if len(questions) > 0:
+		return question("Thank you. Next question: " + questions[0])
+
+	print all_responses
+
+	yagmail.SMTP('derbyhacksechocare@gmail.com').send('jacobcpawlak@gmail.com', 'Your patient\'s answers', all_responses)
+	return statement("Thank you, your responses have been mailed to your nurse.")
 
 @ask.intent('ListMedicationsIntent')
 def list_medications():
