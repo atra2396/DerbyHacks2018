@@ -113,14 +113,11 @@ class Add extends CI_Controller {
 			);
 
 			if($this->form_validation->run()==true){
-				echo "test3";
 				$insert = $this->patient->insert($pData);
 				if($insert) {
-					echo "test";
 					$this->session->set_userdata("success_msg", "Patient Added Successfully.");
 					redirect("/add/patient");
 				} else {
-					echo "test2";
 					$data["error_msg"] = "Something went wrong, try again.";
 				}
 			}
@@ -128,6 +125,106 @@ class Add extends CI_Controller {
 		$data['patient'] = $pData;
 		$this->load->view("templates/header", $data);
 		$this->load->view("add/patient",$data);
+		$this->load->view("templates/footer", $data);
+
+	}
+	function condition() {
+
+		if(!array_key_exists("isUserLoggedIn", $this->session->userdata) || !$this->session->userdata["isUserLoggedIn"]) {
+			$this->session->set_userdata("error_msg", "You must be logged in to access that page.");
+			redirect("/users/login");
+		}
+
+		$data = array();
+
+		$data["title"] = "Add a Condition";
+
+		$this->load->model("condition");
+		$this->load->model("meds");
+		$this->load->model("patient");
+
+		$cData = array();
+
+		if($this->input->post("cSubmit")) {
+			$this->form_validation->set_rules("name","name","required");
+			$this->form_validation->set_rules("patient","patient","required");
+			$this->form_validation->set_rules("medicine","medicine","required");
+
+			$cData = array(
+				"c_name"=>strip_tags($this->input->post("name")),
+				"p_id"=>strip_tags($this->input->post("patient")),
+				"m_id"=>strip_tags($this->input->post("medicine"))
+			);
+
+			if($this->form_validation->run()==true){
+				$insert = $this->condition->insert($cData);
+				if($insert) {
+					$this->session->set_userdata("success_msg", "Condition Added Successfully.");
+					redirect("/add/condition");
+				} else {
+					$data["error_msg"] = "Something went wrong, try again.";
+				}
+			}
+		}
+		$data['condition'] = $cData;
+		$this->load->view("templates/header", $data);
+		$this->load->view("add/condition",$data);
+		$this->load->view("templates/footer", $data);
+
+	}
+
+	public function save_to_data($x) {
+		$data["buffer"] = $x;
+		return TRUE;
+	}
+
+	function alert() {
+
+		if(!array_key_exists("isUserLoggedIn", $this->session->userdata) || !$this->session->userdata["isUserLoggedIn"]) {
+			$this->session->set_userdata("error_msg", "You must be logged in to access that page.");
+			redirect("/users/login");
+		}
+
+		$data = array();
+
+		$data["title"] = "Add an Alert";
+
+		$this->load->model("alert");
+		$this->load->model("meds");
+		$this->load->model("patient");
+		$this->load->model("question");
+
+		$aData = array();
+
+		if($this->input->post("aSubmit")) {
+			$this->form_validation->set_rules("start","Start Date","required");
+			$this->form_validation->set_rules("freq","Frequency","required");
+			$this->form_validation->set_rules("patient","patient","required");
+
+			$aData = array(
+				"a_start_date"=>strip_tags($this->input->post("start")),
+				"a_frequency"=>strip_tags($this->input->post("freq")),
+				"p_id"=>strip_tags($this->input->post("patient")),
+				"m_id"=>strip_tags($this->input->post("medicine") ? $this->input->post("medicine") : "NULL"),
+				"q_id"=>strip_tags($this->input->post("question") ? $this->input->post("question") : "NULL")
+			);
+
+			if($aData["m_id"] == "NULL" and $aData["q_id"] == "NULL") {
+				$this->session->set_userdata("error_msg", "Medicine and Question can not both be blank");
+				redirect("/add/alert");
+			} elseif($this->form_validation->run()==true) {
+				$insert = $this->alert->insert($aData);
+				if($insert) {
+					$this->session->set_userdata("success_msg", "Alert Added Successfully.");
+					redirect("/add/alert");
+				} else {
+					$data["error_msg"] = "Something went wrong, Try again.";
+				}
+			}
+		}
+		$data['alert'] = $aData;
+		$this->load->view("templates/header", $data);
+		$this->load->view("add/alert",$data);
 		$this->load->view("templates/footer", $data);
 
 	}

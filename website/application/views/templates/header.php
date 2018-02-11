@@ -23,8 +23,8 @@
 					Add...
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="#">Alert</a>
-					<a class="dropdown-item" href="#">Condition</a>
+					<a class="dropdown-item" href="/add/alert">Alert</a>
+					<a class="dropdown-item" href="/add/condition">Condition</a>
 					<a class="dropdown-item" href="/add/medicine">Medicine</a>
 					<a class="dropdown-item" href="/add/patient">Patient</a>
 					<a class="dropdown-item" href="/add/question">Question</a>
@@ -57,7 +57,7 @@ if($this->session->userdata("success_msg")) {
 
 <div class="alert alert-dismissible alert-success">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	<strong>Yay!</strong> <?php echo $success ?> 
+	<strong>Yay!</strong> <?php echo $success; ?> 
 </div>
 
 <?php
@@ -70,7 +70,7 @@ if($this->session->userdata("error_msg")) {
 
 <div class="alert alert-dismissible alert-danger">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	<strong>Oh, no!</strong> <?php echo $error ?>
+	<strong>Oh, no!</strong> <?php echo $error; ?>
 </div>
 
 <?php
