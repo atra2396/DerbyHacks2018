@@ -16,18 +16,18 @@ INSERT INTO meds VALUES (	null,
 INSERT INTO questions VALUES (	null,
 				"How many times have you used the bathroom today?");
 
-INSERT INTO conditions VALUES (	null,
-				"Crohn's Disease",
-				1);
-
 INSERT INTO patients VALUES (	null,
 				"Ryan Shah",
 				"15024980361",
 				"ryan.shah@uky.edu",
 				"pants",
 				"Lexington, Kentucky",
-				1,
 				1);
+
+INSERT INTO conditions VALUES ( null,
+                                "Crohn's Disease",
+                                1,
+                                1);
 
 INSERT INTO alerts VALUES (	null,
 				'2018-02-11',
