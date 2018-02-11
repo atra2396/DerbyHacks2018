@@ -3,6 +3,8 @@ from flask_ask import Ask, statement, question
 from peewee import *
 import smtplib
 from email.mime.text import MIMEText
+import yagmail
+yagmail.register('derbyhacksechocare@gmail.com', 'derbyhacks318')
 import pymysql
 
 DATABASE = 'echo_care'
@@ -96,19 +98,21 @@ def email_nurse_intent():
 	#s.sendmail('jacobcpawlak@gmail.com', ['jacob.pawlak@uky.edu'], msg.as_string())
 	#s.quit()
 
-	
+	nurse = ('1', 'Tracy Morgan', '5022943973', 'jacobcpawlak@gmail.com', '10:00 AM', '7:00PM', 'Lexington, KY')
 
 	print "You would get emailed if this worked"
 
-	return statement(render_template('email_nurse', nurse = nurse)
+	return statement(render_template('email_nurse', nurse = nurse))
 
 
 @ask.intent('CallNurseIntent')
 def call_nurse_intent():
 
+	nurse = ('1', 'Tracy Morgan', '5022943973', 'jacobcpawlak@gmail.com', '10:00 AM', '7:00PM', 'Lexington, KY')
+
 	print "You would get called if this worked"
 
-	return statement(render_template('call_nurse', nurse = nurse)
+	return statement(render_template('call_nurse', nurse = nurse))
 
 @ask.intent('MedicationAlertIntent')
 def get_medical_alerts():
