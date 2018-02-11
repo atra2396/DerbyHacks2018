@@ -1,3 +1,6 @@
-                <em>&copy; 2018</em>
+</br>
+	<div class="container-fluid">
+                <em>&copy; Echo Care 2018</em>
+	</div>
         </body>
 </html>
