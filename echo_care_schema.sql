@@ -2,7 +2,7 @@ CREATE TABLE nurses (		n_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				n_name varchar(30) NOT NULL, 
 				n_phone varchar(20) NOT NULL, 
 				n_email varchar(50) NOT NULL,
-				n_password varchar(20) NOT NULL,  
+				n_password varchar(32) NOT NULL,  
 				n_location varchar(50) NOT NULL);
 
 CREATE TABLE meds (		m_id int NOT NULL AUTO_INCREMENT PRIMARY KEY, 
@@ -18,7 +18,7 @@ CREATE TABLE patients (         p_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
                                 p_name varchar(20) NOT NULL,
                                 p_phone varchar(20) NOT NULL,
                                 p_email varchar(50) NOT NULL,
-                                p_password varchar(20) NOT NULL,
+                                p_password varchar(32) NOT NULL,
                                 p_location varchar(50) NOT NULL,
                                 n_id int NOT NULL,                             
                                 FOREIGN KEY (n_id) REFERENCES nurses(n_id));
