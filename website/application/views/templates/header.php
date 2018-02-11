@@ -15,8 +15,18 @@
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav">
-			<li class="nav-item">
-				<a class="nav-link" href="#">View Patients</a>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					View...
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="/users/account">My Account</a>
+					<a class="dropdown-item" href="/view/alerts">Alerts</a>
+					<a class="dropdown-item" href="/view/conditions">Conditions</a>
+					<a class="dropdown-item" href="/view/medicines">Medicines</a>
+					<a class="dropdown-item" href="/view/patients">Patients</a>
+					<a class="dropdown-item" href="/view/questions">Questions</a>
+				</div>
 			</li>
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
