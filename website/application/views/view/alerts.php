@@ -8,7 +8,7 @@
 	<th scope="col">Start Date</th>
 	<th scope="col">Frequency</th>
 	<th scope="col">Patient</th>
-	<th scope="col">Medicne</th>
+	<th scope="col">Medicine</th>
 	<th scope="col">Question</th>
 	</tr>
 	</thead>
